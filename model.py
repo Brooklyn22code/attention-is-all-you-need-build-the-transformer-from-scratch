@@ -31,7 +31,6 @@ def build_token_to_id_vocab(sentences, specials=('<pad>', '<bos>', '<eos>', '<un
 
 
     if specials == ('<pad>', '<bos>', '<eos>', '<unk>'):
-  
         token = {'<pad>': 0, '<bos>': 1, '<eos>': 2, '<unk>': 3}
         for i, word in enumerate(unique_words):
             if word == '<pad>' or word == '<bos>' or word == '<eos>' or word == '<unk>':
@@ -45,7 +44,10 @@ def build_token_to_id_vocab(sentences, specials=('<pad>', '<bos>', '<eos>', '<un
 
  
     for i, u_word in enumerate(unique_words):
-        token[u_word] = i+4
+        if len(specials) == 5:
+            token[u_word] = i+1
+        else:
+            token[u_word] = i+len(specials)
 
     return token
 
