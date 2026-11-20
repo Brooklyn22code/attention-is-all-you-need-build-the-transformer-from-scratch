@@ -109,15 +109,24 @@ def pad_id_sequence(ids, max_len, pad_id):
         return ids
 
     elif len(ids) > max_len:
-        return ids[:-(max_len-len(ids))+1]
+        return ids[:-(len(ids)-max_len)]
 
     else:
         for _ in range(max_len-len(ids)):
             ids.append(pad_id)
         return ids
 
-# Step 6 - stack_padded_sequences_to_batch (not yet solved)
-# TODO: implement
+# Step 6 - stack_padded_sequences_to_batch
+import torch
+
+def stack_padded_sequences_to_batch(padded_sequences):
+    stack_list = []
+    for l in padded_sequences:
+        stack_list.append(l)
+
+    stack = torch.tensor(stack_list)
+
+    return stack
 
 # Step 7 - scale_embeddings_by_sqrt_d_model (not yet solved)
 # TODO: implement
